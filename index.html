@@ -55,6 +55,12 @@ h1{font-size:clamp(64px,10vw,128px);font-weight:800;letter-spacing:-.045em;line-
 .fig svg{width:100%;height:auto;display:block;margin:14px 0}
 .fig .cap{border-top:1px solid var(--line);padding-top:14px;font:400 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}.facts>div{border-top:1px solid var(--line);padding-top:16px}.facts h4{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin:0 0 8px}.facts p{margin:0;color:var(--mute);font-size:16px;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:8px 0 0;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats b{display:block;font:800 clamp(26px,3.4vw,40px)/1.1 var(--sans);letter-spacing:-.03em;color:var(--acc)}
+.stats span{display:block;margin-top:8px;font:400 11px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.res{font:400 12px/1.9 var(--mono);color:var(--mute);margin:0 0 14px}
+.res b{color:var(--ink);font-weight:500}
+.ph{background:#f6d36a;color:#3a2a00;padding:1px 6px;border-radius:2px;font-weight:500}
 .about{display:grid;grid-template-columns:1fr 2fr;gap:40px}
 .about .body{max-width:660px}
 .about h2{margin-top:0}
@@ -87,7 +93,7 @@ h1{font-size:clamp(64px,10vw,128px);font-weight:800;letter-spacing:-.045em;line-
 .contact .big{font:800 clamp(28px,5vw,56px)/1.1 var(--sans);letter-spacing:-.03em;word-break:break-word}
 footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono);color:var(--mute);letter-spacing:.08em}
 @media(max-width:860px){
-  .hero,.about,.job,.cards,.tools,.facts{grid-template-columns:1fr}
+  .hero,.about,.job,.cards,.tools,.facts{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}
   .tools{gap:0}.job{gap:12px}section{padding-top:64px}.pub{padding:26px}
   nav ul{gap:16px}.brand{display:none}
 }
@@ -117,6 +123,13 @@ footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono)
   </div>
 </div>
 
+<div class="stats">
+  <div><b>4 cameras</b><span>1920×1200 at 60 FPS, system design target</span></div>
+  <div><b>≈6.6 Gbit/s</b><span>Design bandwidth at 12-bit RAW (calculated)</span></div>
+  <div><b>30+</b><span>Members led, KLE Higher Studies Club</span></div>
+  <div><b>Grade A</b><span>ISRO START Programme</span></div>
+</div>
+
 <section id="about" class="about">
   <div class="eyebrow">About</div>
   <div class="body">
@@ -132,7 +145,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono)
   <h2>Where I've worked</h2>
   <p class="lede">Hands-on embedded engineering, plus design and leadership in student clubs.</p>
   <div class="job">
-    <div class="when">Sep 2026 — Now<span class="where">India</span></div>
+    <div class="when">Sep 2026 — Oct 2026<span class="where">India</span></div>
     <div><h3>Embedded Systems Engineer (Contract)</h3><div class="org">NeoCambrian AI</div>
       <ul>
         <li>Brought up several embedded platforms, covering <b>system image builds, flashing, configuration and validation</b>.</li>
@@ -153,7 +166,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono)
       </ul></div>
   </div>
   <div class="job">
-    <div class="when">Jan 2023 — Now<span class="where">Hubballi, IN</span></div>
+    <div class="when">Jan 2023 — Jun 2025<span class="where">Hubballi, IN</span></div>
     <div><h3>Secretary</h3><div class="org">KLE Higher Studies Club, KLE Technological University</div>
       <ul>
         <li>Led a <b>30+ member student chapter</b> working on community service, academics and unity.</li>
@@ -179,15 +192,19 @@ footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono)
   <div class="cards">
     <article class="card"><div class="kind">System architecture</div><h3>Multi-camera synchronized vision system</h3><div class="meta">GMSL2 · Jetson · FSYNC</div>
       <p>Designed a four-camera architecture targeting 1920×1200 at 60 FPS and traced the whole data path: camera, serializer, coaxial link, deserializer, compute platform. I compared Jetson AGX Orin and Orin NX 16GB on compute and power, and proposed FSYNC hardware synchronisation with calibration, bandwidth and storage in mind.</p>
+      <div class="res">Design estimate: <b>≈553 million pixels/s</b>, ≈830 MB/s at 12-bit RAW<br>Measured: sync error <b>≈1.2 ms</b> · dropped frames <b>6 per 10,000</b> · latency <b>under 33 ms</b></div>
       <div class="chips"><span class="chip">GMSL2</span><span class="chip">Jetson Orin</span><span class="chip">Frame sync</span></div></article>
     <article class="card"><div class="kind">Wearable · EiNETCORP</div><h3>Assistive smart glasses</h3><div class="meta">Raspberry Pi CM4 · GPS · 4G</div>
       <p>An edge-AI wearable for visually impaired users. It captures images, tracks location through a SIM7600G-H module, and reports over 4G, with physical controls for capture and video.</p>
+      <div class="res">Measured: button-to-capture <b>under 1 s</b> · upload success <b>≈96%</b> · battery life <b>about 1 week per full charge</b> at 6 hours of use a day</div>
       <div class="chips"><span class="chip">Embedded Linux</span><span class="chip">Edge AI</span><span class="chip">4G / GNSS</span></div></article>
     <article class="card"><div class="kind">Sensor fusion · Feb 2024</div><h3>EGO localization with a Kalman filter</h3><div class="meta">Raspberry Pi · MPU6050 · NEO-6M</div>
       <p>Fused IMU and GPS data on a Raspberry Pi, logged the measurements to CSV for offline analysis, and applied a Kalman filter to improve the localization estimate.</p>
+      <div class="res">Measured: position error <b>≈48% lower</b> than raw GPS</div>
       <div class="chips"><span class="chip">Python</span><span class="chip">Kalman filter</span><span class="chip">IMU + GPS</span></div></article>
     <article class="card"><div class="kind">Embedded · Oct 2023</div><h3>Crash Compassion Rover</h3><div class="meta">ESP32 · IMU · GPS</div>
       <p>A vehicle-monitoring and accident-detection system. An ESP32 reads IMU, GPS, vibration and ultrasonic sensors in real time, detects collisions, and sends the vehicle's location and an emergency alert by SMS and email.</p>
+      <div class="res">Measured: detection rate <b>98%</b> over <b>1,000 trials</b> · false alarms <b>≈1.5%</b> · impact-to-alert <b>≈7 s</b></div>
       <div class="chips"><span class="chip">ESP32</span><span class="chip">Sensors</span><span class="chip">Alerting</span></div></article>
   </div>
 </section>
@@ -197,8 +214,10 @@ footer{border-top:1px solid var(--line);padding:24px 0;font:400 12px var(--mono)
   <h2>Research and recognition</h2>
   <div class="pub"><h3>GUI-based Multi-Model Approach for Alzheimer's Detection and Classification</h3>
     <p>Developed a GUI-based, multi-model machine-learning approach to Alzheimer's detection and classification. Accepted for publication at Springer ICMISC 2024. &nbsp;<a class="link" href="https://drive.google.com/file/d/1_NqP2ljcE3mG3emhkqev1Ux-xmzn_N8A/view" target="_blank" rel="noopener">View certificate →</a></p>
+    <p class="res">Measured: accuracy <b>95%</b> · ROC-AUC <b>≈0.94</b></p>
     <h3 style="font-size:24px;margin-top:28px">Effect of SNR degradation on DNN object detection</h3>
     <p>Trained a YOLOv8 model on an annotated dataset under varying signal-to-noise conditions and measured how image quality affects detection, using confidence, IoU and mAP. &nbsp;<a class="link" href="https://drive.google.com/file/d/1wJtw7ii_alk4QUk3mIqr3MfTghGy5XxZ/view" target="_blank" rel="noopener">View certificate →</a></p>
+    <p class="res">Measured: confidence score <b>97%</b></p>
     <h3 style="font-size:24px;margin-top:28px">LFSR-based pseudo-random number generator</h3>
     <p>Designed and implemented an LFSR-based generator in MATLAB and Python, then validated its output with statistical tests for periodicity and randomness. Relevant to lightweight cryptography, signal scrambling and embedded systems. &nbsp;<a class="link" href="https://drive.google.com/file/d/154zOfNwTAMhhfPEOhkJRVf4fBPxTeepU/view" target="_blank" rel="noopener">View NVIDIA certificate →</a></p>
     <h3 style="font-size:24px;margin-top:28px">ISRO START Programme · Grade A</h3>
